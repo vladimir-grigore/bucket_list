@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :activity do
-    name { "MyString" }
-    description { "MyText" }
+    name { 'MyString' }
+    description { 'MyText' }
     user { create(:user) }
     public { true }
-    deadline { "2024-01-09 03:30:05" }
+    deadline { '2024-01-09 03:30:05' }
   end
 
   factory :user do

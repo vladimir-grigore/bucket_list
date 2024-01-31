@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe Activity, type: :model do
   let(:user) { create(:user) }
 
-  subject {
+  subject do
     described_class.new(
       user: user,
       name: 'Climb Everest',
       description: 'I want to see the top of the world',
       public: true,
-      deadline: '12/09/2067',
+      deadline: '12/09/2067'
     )
-  }
+  end
 
   it 'is valid with valid attributes' do
     expect(subject).to be_valid

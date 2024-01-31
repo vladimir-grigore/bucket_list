@@ -13,7 +13,7 @@ RSpec.describe 'Activities', type: :request do
         name: 'Climb Everest',
         description: 'I want to see the top of the world',
         public: true,
-        deadline: '12/09/2067',
+        deadline: '12/09/2067'
       }
     end
 
@@ -41,7 +41,7 @@ RSpec.describe 'Activities', type: :request do
           foo: 'Climb Everest',
           bar: 'I want to see the top of the world',
           public: true,
-          deadline: '12/09/2067',
+          deadline: '12/09/2067'
         }
       end
 
@@ -58,7 +58,7 @@ RSpec.describe 'Activities', type: :request do
         {
           description: 'I want to see the top of the world',
           public: true,
-          deadline: '12/09/2067',
+          deadline: '12/09/2067'
         }
       end
 
