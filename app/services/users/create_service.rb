@@ -4,8 +4,6 @@ module Users
       User.transaction do
         user.save!
 
-        puts("user: #{user.to_json}")
-
         user
       end
     end
