@@ -21,4 +21,15 @@ RSpec.describe User, :type => :model do
   it { should validate_presence_of(:last_name) }
 
   it { should validate_presence_of(:password) }
+
+  context 'with resources added' do
+    before do
+      subject.save
+      create(:activity, user: subject)
+    end
+
+    it 'destroys dependent resources' do
+      expect { subject.destroy }.to change(Activity, :count).by(-1)
+    end
+  end
 end

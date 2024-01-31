@@ -1,8 +1,10 @@
 class ActivitiesController < BaseController
   def create
-    user = Activities::CreateService.new.call(params: activities_params)
+    activity = Activities::CreateService.new.call(user: current_user, params: activities_params)
 
-    render json: user, status: :created
+    render json: activity, status: :created
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { title: e.message }, status: :unprocessable_entity
   end
 
   private
