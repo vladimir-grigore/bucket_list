@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Activities
+  # Activity create service
   class CreateService
     def call(user:, params:)
       Activity.transaction do

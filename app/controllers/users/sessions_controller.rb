@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Users
+  # Login controller for users
   class SessionsController < Devise::SessionsController
     # before_action :configure_sign_in_params, only: [:create]
     skip_before_action :verify_signed_out_user

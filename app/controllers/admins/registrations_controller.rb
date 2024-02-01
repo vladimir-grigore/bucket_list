@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Admins
+  # Controller for creating admin users
   class RegistrationsController < Devise::RegistrationsController
     before_action :require_no_authentication, only: :cancel
     # before_action :configure_sign_up_params, only: [:create]
