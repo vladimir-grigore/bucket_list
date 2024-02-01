@@ -25,6 +25,8 @@ services:
     volumes:
       - .:/var/app
       - bundle_cache:/usr/local/bundle
+    env_file:
+      - .env
     depends_on:
       - db
     ports:
