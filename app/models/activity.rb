@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Activity model
 class Activity < ApplicationRecord
   belongs_to :user
 

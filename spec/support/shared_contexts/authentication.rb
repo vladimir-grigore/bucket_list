@@ -8,8 +8,8 @@ RSpec.shared_context 'with authenticated user' do
     {
       user: {
         email: user.email,
-        password: user.password,
-      },
+        password: user.password
+      }
     }
   end
 

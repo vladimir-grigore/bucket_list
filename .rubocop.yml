@@ -1,0 +1,23 @@
+Layout/LineLength:
+  Max: 120
+  AllowURI: true
+
+Metrics/MethodLength:
+  Max: 40
+
+Metrics/CyclomaticComplexity:
+  Description: A complexity metric that is strongly correlated to the number of test
+    cases needed to validate a method.
+  Enabled: true
+  Max: 9
+
+Metrics/PerceivedComplexity:
+  Description: A complexity metric geared towards measuring complexity for a human reader.
+  Max: 9
+
+Metrics/BlockLength:
+  Max: 100
+
+Metrics/BlockNesting:
+  Max: 5
+  

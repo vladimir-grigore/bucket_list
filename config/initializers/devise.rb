@@ -14,11 +14,11 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  config.secret_key = ENV["DEVISE_SECRET_KEY"]
+  config.secret_key = ENV['DEVISE_SECRET_KEY']
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
-  config.parent_controller = "ApplicationController"
+  config.parent_controller = 'ApplicationController'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -97,7 +97,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = %i(http_auth params_auth)
+  config.skip_session_storage = %i[http_auth params_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'de516fc09426d572f7116dac7c1d430535b15236462d36c0119af7c5ccb964d21b95f7352e07762da8c4b681f096484c083c12cb5e84a846af59995703bf2a26'
+  # config.pepper = '64d21b95f7352e07762da8c4b681f096484c083c12cb5e84a846af59995703bf2a26'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -313,14 +313,14 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.jwt do |jwt|
-    jwt.secret = "1234" # ENV["DEVISE_JWT_SECRET_KEY"]
+    jwt.secret = '1234' # ENV["DEVISE_JWT_SECRET_KEY"]
     jwt.dispatch_requests = [
-      ["POST", %r{^/users/sign_in$}],
+      ['POST', %r{^/users/sign_in$}]
     ]
     jwt.revocation_requests = [
-      ["DELETE", %r{^/users/sign_out$}],
+      ['DELETE', %r{^/users/sign_out$}]
     ]
 
-    jwt.expiration_time = ENV["DEVISE_JWT_EXPIRATION_TIME"]&.to_i || 60.minutes.to_i
+    jwt.expiration_time = ENV['DEVISE_JWT_EXPIRATION_TIME']&.to_i || 60.minutes.to_i
   end
 end

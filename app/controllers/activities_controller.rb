@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Controller for creating user activities
 class ActivitiesController < BaseController
   def create
     activity = Activities::CreateService.new.call(user: current_user, params: activities_params)
