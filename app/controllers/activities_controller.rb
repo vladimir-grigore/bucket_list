@@ -10,6 +10,25 @@ class ActivitiesController < BaseController
     render json: { title: e.message }, status: :unprocessable_entity
   end
 
+  def index
+    render json: current_user.activities, status: :ok
+  end
+
+  def update
+    activity = Activities::UpdateService.new(user: current_user, id: params[:id]).call(params: activities_params)
+
+    render json: activity, status: :ok
+  rescue Activities::UpdateService::ActivityNotFoundError,
+         Activities::UpdateService::InvalidActivityError
+    respond(I18n.t('errors.messages.generic.404'), 404)
+  end
+
+  def destroy
+    Activities::DeleteService.new.call(user: current_user, id: params[:id])
+  rescue Activities::DeleteService::ActivityNotFoundError
+    respond(I18n.t('errors.messages.generic.404'), 404)
+  end
+
   private
 
   def activities_params
