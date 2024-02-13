@@ -28,7 +28,7 @@ RSpec.describe Activity, type: :model do
 
   it { should validate_presence_of(:description) }
 
-  it { should validate_presence_of(:public) }
+  it { should validate_inclusion_of(:public).in_array([true, false]) }
 
   it { should validate_presence_of(:deadline) }
 end
