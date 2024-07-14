@@ -60,6 +60,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'shoulda-matchers'
+  gem 'database_cleaner-active_record'
 end
 
 group :development do
