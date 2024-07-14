@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   resources :activities
+
+  resources :activity_board, only: %i(index show)
 end

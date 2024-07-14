@@ -6,4 +6,6 @@ class Activity < ApplicationRecord
 
   validates_presence_of :name, :description, :deadline
   validates_inclusion_of :public, in: [true, false]
+
+  scope :visible, -> { where(public: true) }
 end

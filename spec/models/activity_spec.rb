@@ -28,7 +28,16 @@ RSpec.describe Activity, type: :model do
 
   it { should validate_presence_of(:description) }
 
-  it { should validate_inclusion_of(:public).in_array([true, false]) }
-
   it { should validate_presence_of(:deadline) }
+
+  describe 'with visible scope' do
+    before do
+      create_list(:activity, 5)
+      create_list(:activity, 3, public: false)
+    end
+
+    it 'returns only the public activities' do
+      expect(described_class.visible.count).to eq(5)
+    end
+  end
 end

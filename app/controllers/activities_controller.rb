@@ -10,6 +10,12 @@ class ActivitiesController < BaseController
     render json: { title: e.message }, status: :unprocessable_entity
   end
 
+  def show
+    render json: current_user.activities.find(params[:id]), status: :ok
+  rescue ActiveRecord::RecordNotFound
+    respond(I18n.t('errors.messages.generic.404'), 404)
+  end
+
   def index
     render json: current_user.activities, status: :ok
   end
