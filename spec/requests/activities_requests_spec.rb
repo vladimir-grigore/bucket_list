@@ -85,6 +85,7 @@ RSpec.describe 'Activities', type: :request do
     end
     let(:create_request) { post url, params: params.to_json }
     let(:update_request) { put "/activities/#{activity.id}", params: params.to_json }
+    let(:show_request) { get "/activities/#{activity.id}" }
 
     it 'validates authentication on create' do
       create_request
@@ -109,6 +110,13 @@ RSpec.describe 'Activities', type: :request do
 
     it 'validates authentication on update' do
       update_request
+
+      expect(json_response['title']).to eq('You need to sign in or sign up before continuing.')
+      expect(response.status).to eq(401)
+    end
+
+    it 'validates authentication on show' do
+      show_request
 
       expect(json_response['title']).to eq('You need to sign in or sign up before continuing.')
       expect(response.status).to eq(401)
@@ -170,6 +178,37 @@ RSpec.describe 'Activities', type: :request do
       expect(json_response.first['user_id']).to eq(user.id)
       expect(json_response.count).to eq(5)
       expect(response.status).to eq(200)
+    end
+  end
+
+  describe 'GET /activity/:id' do
+    include_context 'with authenticated user'
+
+    let(:activity) { create(:activity, user: user) }
+    let(:url) { "/activities/#{activity.id}" }
+    let(:request) { get url, headers: headers(response) }
+
+    it 'retrieves the activity' do
+      request
+
+      expect(json_response['name']).to eq(activity.name)
+      expect(json_response['description']).to eq(activity.description)
+      expect(json_response['public']).to be_truthy
+      expect(json_response['user_id']).to eq(activity.user_id)
+      expect(response.status).to eq(200)
+    end
+
+    context 'when the activity does not belong to the current user' do\
+      let(:another_user) { create(:user) }
+      let(:activity) { create(:activity, user: another_user) }
+      let(:url) { "/activities/#{activity.id}" }
+
+      it 'does not retrieve the activity' do
+        request
+
+        expect(json_response['title']).to eq('Resource not found')
+        expect(response.status).to eq(404)
+      end
     end
   end
 
